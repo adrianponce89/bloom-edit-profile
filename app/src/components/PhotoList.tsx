@@ -15,6 +15,8 @@ type PhotoListProps = {
   onDeletePhoto: Function;
   onUpdatePhoto: Function;
   onAddPhoto: Function;
+  onMoveLeftPhoto: Function;
+  onMoveRightPhoto: Function;
 };
 
 const PhotoList: (props: PhotoListProps) => React.Node = ({
@@ -23,6 +25,8 @@ const PhotoList: (props: PhotoListProps) => React.Node = ({
   onDeletePhoto,
   onUpdatePhoto,
   onAddPhoto,
+  onMoveLeftPhoto,
+  onMoveRightPhoto,
 }) => {
   return (
     <>
@@ -47,11 +51,17 @@ const PhotoList: (props: PhotoListProps) => React.Node = ({
                     <Text style={styles.clearButtonText}>x</Text>
                   </TouchableOpacity>
                 </View>
-                {/* <View style={styles.addButton}>
-                  <TouchableOpacity>
-                    <Text style={styles.addButtonText}>+</Text>
+
+                <View style={styles.leftButton}>
+                  <TouchableOpacity onPress={() => onMoveLeftPhoto(photo)}>
+                    <Text style={styles.leftButtonText}>{'<'}</Text>
                   </TouchableOpacity>
-                </View> */}
+                </View>
+                <View style={styles.rightButton}>
+                  <TouchableOpacity onPress={() => onMoveRightPhoto(photo)}>
+                    <Text style={styles.rightButtonText}>{'>'}</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             ))}
           </View>
@@ -125,6 +135,45 @@ const styles = StyleSheet.create({
     width: '100%',
     fontWeight: 'bold',
   },
+  leftButton: {
+    backgroundColor: '#555',
+    width: 30,
+    height: 30,
+    position: 'absolute',
+    borderRadius: 5,
+    left: 5,
+    top: 5,
+    justifyContent: 'center',
+  },
+  leftButtonText: {
+    color: '#fff',
+    fontSize: 24,
+    textAlign: 'center',
+    lineHeight: 30,
+    height: '100%',
+    width: '100%',
+    fontWeight: 'bold',
+  },
+  rightButton: {
+    backgroundColor: '#555',
+    width: 30,
+    height: 30,
+    position: 'absolute',
+    borderRadius: 5,
+    right: 5,
+    top: 5,
+    justifyContent: 'center',
+  },
+  rightButtonText: {
+    color: '#fff',
+    fontSize: 24,
+    textAlign: 'center',
+    lineHeight: 30,
+    height: '100%',
+    width: '100%',
+    fontWeight: 'bold',
+  },
+
   addButton: {
     backgroundColor: '#fAA',
     width: 30,

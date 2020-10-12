@@ -13,6 +13,7 @@ const profileSlice = createSlice({
       state.loading = false;
       state.loaded = true;
       state.photos = action.payload;
+      // state.photos.sort((a, b) => a.position - b.position);
     },
     getPhotosFailure: (state, action) => {
       state.loading = false;
@@ -38,6 +39,7 @@ const profileSlice = createSlice({
         (photo) => photo.id !== action.payload.id,
       );
       state.photos.push(action.payload);
+      state.photos.sort((a, b) => a.position - b.position);
     },
     updatePhotoFailure: (state, action) => {
       state.loading = false;

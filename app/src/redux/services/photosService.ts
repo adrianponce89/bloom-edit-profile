@@ -49,7 +49,7 @@ async function addMemberPhoto(memberId: Number, query: PhotoQuery) {
 
 async function updatePhoto(photoId: Number, query: PhotoQuery) {
   const res = await fetch(`http://10.0.2.2:3000/photos/${photoId}`, {
-    method: 'PUT',
+    method: 'PATCH',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
