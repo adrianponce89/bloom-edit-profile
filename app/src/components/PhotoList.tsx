@@ -13,12 +13,14 @@ type PhotoListProps = {
   loading: Boolean;
   photoList?: Array<String>;
   onDeletePhoto: Function;
+  onUpdatePhoto: Function;
 };
 
 const PhotoList: (props: PhotoListProps) => React.Node = ({
   loading,
   photoList,
   onDeletePhoto,
+  onUpdatePhoto,
 }) => {
   return (
     <>
@@ -29,7 +31,7 @@ const PhotoList: (props: PhotoListProps) => React.Node = ({
           <View style={styles.photoListContainer}>
             {photoList?.map((photo) => (
               <View key={photo.id} style={styles.profileContainer}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => onUpdatePhoto(photo.id)}>
                   <Image
                     style={styles.profileImage}
                     source={{

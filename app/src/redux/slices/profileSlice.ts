@@ -30,6 +30,19 @@ const profileSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    updatePhotoRequest: (state) => {},
+    updatePhotoSuccess: (state, action) => {
+      state.loading = false;
+      state.loaded = true;
+      state.photos = state.photos.filter(
+        (photo) => photo.id !== action.payload.id,
+      );
+      state.photos.push(action.payload);
+    },
+    updatePhotoFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
   },
 });
 
@@ -40,6 +53,9 @@ export const {
   deletePhotoRequest,
   deletePhotoSuccess,
   deletePhotoFailure,
+  updatePhotoRequest,
+  updatePhotoSuccess,
+  updatePhotoFailure,
 } = profileSlice.actions;
 
 export function getProfilePhotos() {
@@ -65,6 +81,20 @@ export function deletePhoto(photoId) {
       },
       (error) => {
         dispatch(deletePhotoFailure(error.toString()));
+      },
+    );
+  };
+}
+
+export function updatePhoto(photoId, query) {
+  return (dispatch) => {
+    dispatch(updatePhotoRequest());
+    photosService.updatePhoto(photoId, query).then(
+      (photo) => {
+        dispatch(updatePhotoSuccess(photo));
+      },
+      (error) => {
+        dispatch(updatePhotoFailure(error.toString()));
       },
     );
   };
