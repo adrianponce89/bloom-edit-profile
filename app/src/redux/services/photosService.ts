@@ -40,7 +40,7 @@ async function addMemberPhoto(memberId: Number, query: PhotoQuery) {
   });
 
   const resJson = await res.json();
-  if (res.status === 200) {
+  if (res.status === 201) {
     return resJson;
   } else {
     return Promise.reject(resJson.error);

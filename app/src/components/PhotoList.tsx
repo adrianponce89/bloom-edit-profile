@@ -14,6 +14,7 @@ type PhotoListProps = {
   photoList?: Array<String>;
   onDeletePhoto: Function;
   onUpdatePhoto: Function;
+  onAddPhoto: Function;
 };
 
 const PhotoList: (props: PhotoListProps) => React.Node = ({
@@ -21,6 +22,7 @@ const PhotoList: (props: PhotoListProps) => React.Node = ({
   photoList,
   onDeletePhoto,
   onUpdatePhoto,
+  onAddPhoto,
 }) => {
   return (
     <>
@@ -53,7 +55,7 @@ const PhotoList: (props: PhotoListProps) => React.Node = ({
               </View>
             ))}
           </View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => onAddPhoto()}>
             <View style={styles.addPhoto}>
               <Text style={styles.addPhotoText}>Add Photo</Text>
             </View>

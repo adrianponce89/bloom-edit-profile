@@ -4,6 +4,7 @@ import PhotoList from '../components/PhotoList';
 import {
   deletePhoto,
   updatePhoto,
+  addPhoto,
   getProfilePhotos,
 } from '../redux/slices/profileSlice';
 
@@ -32,12 +33,17 @@ const EditProfile: () => React.Node = () => {
     dispatch(updatePhoto(photoId, hardcodedPhoto));
   };
 
+  const handleAddPhoto = () => {
+    dispatch(addPhoto(hardcodedPhoto));
+  };
+
   return (
     <PhotoList
       loading={profile.loading}
       photoList={profile?.photos}
       onDeletePhoto={handleDeletePhoto}
       onUpdatePhoto={handleUpdatePhoto}
+      onAddPhoto={handleAddPhoto}
     />
   );
 };
