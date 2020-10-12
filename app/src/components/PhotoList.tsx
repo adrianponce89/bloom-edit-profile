@@ -2,7 +2,6 @@ import React from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  ScrollView,
   View,
   Text,
   StatusBar,
@@ -10,55 +9,15 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+type PhotoListProps = {
+  loading: Boolean;
+  photoList?: Array<String>;
+};
 
-import PhotoItem from './PhotoItem';
-
-const PhotoList: () => React.Node = () => {
-  const photoList = [
-    {
-      id: 1,
-      url: 'https://collectionimages.npg.org.uk/large/mw82857/Bill-Gates.jpg',
-    },
-    {
-      id: 2,
-      url:
-        'https://i.pinimg.com/564x/87/64/76/876476178e8cd6bcaab1269f7283d97b.jpg',
-    },
-    {
-      id: 3,
-      url:
-        'https://media.king5.com/assets/KING/images/156daac9-f162-4c82-bb78-6edc4225d9ae/156daac9-f162-4c82-bb78-6edc4225d9ae_750x422.jpg',
-    },
-    {
-      id: 4,
-      url: 'https://collectionimages.npg.org.uk/large/mw82857/Bill-Gates.jpg',
-    },
-    {
-      id: 5,
-      url:
-        'https://i.pinimg.com/564x/87/64/76/876476178e8cd6bcaab1269f7283d97b.jpg',
-    },
-    {
-      id: 6,
-      url:
-        'https://media.king5.com/assets/KING/images/156daac9-f162-4c82-bb78-6edc4225d9ae/156daac9-f162-4c82-bb78-6edc4225d9ae_750x422.jpg',
-    },
-    {
-      id: 7,
-      url: 'https://collectionimages.npg.org.uk/large/mw82857/Bill-Gates.jpg',
-    },
-    {
-      id: 8,
-      url:
-        'https://i.pinimg.com/564x/87/64/76/876476178e8cd6bcaab1269f7283d97b.jpg',
-    },
-    {
-      id: 9,
-      url:
-        'https://media.king5.com/assets/KING/images/156daac9-f162-4c82-bb78-6edc4225d9ae/156daac9-f162-4c82-bb78-6edc4225d9ae_750x422.jpg',
-    },
-  ];
+const PhotoList: (props: PhotoListProps) => React.Node = ({
+  loading,
+  photoList,
+}) => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -66,7 +25,7 @@ const PhotoList: () => React.Node = () => {
         <View style={styles.body}>
           <Text>Photos</Text>
           <View style={styles.photoListContainer}>
-            {photoList.map((photo) => (
+            {photoList?.map((photo) => (
               <View key={photo.id} style={styles.profileContainer}>
                 <TouchableOpacity>
                   <Image
