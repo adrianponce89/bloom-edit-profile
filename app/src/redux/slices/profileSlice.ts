@@ -13,7 +13,7 @@ const profileSlice = createSlice({
       state.loading = false;
       state.loaded = true;
       state.photos = action.payload;
-      // state.photos.sort((a, b) => a.position - b.position);
+      state.photos.sort((a, b) => a.position - b.position);
     },
     getPhotosFailure: (state, action) => {
       state.loading = false;
