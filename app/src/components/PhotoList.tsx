@@ -12,11 +12,13 @@ import {
 type PhotoListProps = {
   loading: Boolean;
   photoList?: Array<String>;
+  onDeletePhoto: Function;
 };
 
 const PhotoList: (props: PhotoListProps) => React.Node = ({
   loading,
   photoList,
+  onDeletePhoto,
 }) => {
   return (
     <>
@@ -37,7 +39,7 @@ const PhotoList: (props: PhotoListProps) => React.Node = ({
                 </TouchableOpacity>
 
                 <View style={styles.clearButton}>
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={() => onDeletePhoto(photo.id)}>
                     <Text style={styles.clearButtonText}>x</Text>
                   </TouchableOpacity>
                 </View>
@@ -68,7 +70,7 @@ const styles = StyleSheet.create({
   photoListContainer: {
     flex: 1,
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     flexDirection: 'row',
     alignContent: 'flex-start',
     padding: 10,
